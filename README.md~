@@ -1,6 +1,6 @@
 # solusvm #
 
-solusvm is a Go client library for accessing the [solusvm billing system][].
+solusvm is a Go client library for accessing the [solusvm master][].
 
 **Documentation:**
 
@@ -17,7 +17,7 @@ access different parts of the solusvm API.
 
 ### authentication
 
-solusvm supports of authentication
+solusvm supports of authentication for specific host
 
 ID and Key has been created on solusvm master for requesting host
 
@@ -75,7 +75,7 @@ We are glad to help if you have questions, or request for new features..
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | Vijayakanth (<mvijaykanth@megam.ion>)
+| **Author:**          | Vijayakanth M (<mvijaykanth@megam.ion>)
 | 	                   | KishorekumarNeelamegam (<nkishore@megam.io>)
 | **Copyright:**       | Copyright (c) 2013-2016 Megam Systems.
 | **License:**         | Apache License, Version 2.0

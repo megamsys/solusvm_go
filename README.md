@@ -1,6 +1,6 @@
 # solusvm #
 
-solusvm is a Go client library for accessing the [solusvm billing system][].
+solusvm is a Go client library for accessing the [solusvm master][].
 
 **Documentation:**
 
@@ -17,7 +17,7 @@ access different parts of the solusvm API.
 
 ### authentication
 
-solusvm supports of authentication
+solusvm supports of authentication for specific host
 
 ID and Key has been created on solusvm master for requesting host
 
@@ -33,7 +33,7 @@ You have to pass the variables using the Key ID, ID_PASSWORD  in a map.
 
 client := solusvm.NewClient(nil, "https://www.wheesy.com/api/admin/")
 
-accounts, _, err := client.VirtualServers.ListAll(map[string]string{"id": "id2aceD302xEv",ke})
+accounts, _, err := client.VirtualServers.ListAll(map[string]string{"id": "id2aceD302xEv","key":"e3vNoiG4kgj348"})
 //Please refer the api, there are more fields to be passed
 ```
 
@@ -75,7 +75,7 @@ We are glad to help if you have questions, or request for new features..
 
 |                      |                                          |
 |:---------------------|:-----------------------------------------|
-| **Author:**          | Vijayakanth (<mvijaykanth@megam.ion>)
+| **Author:**          | Vijayakanth M (<mvijaykanth@megam.ion>)
 | 	                   | KishorekumarNeelamegam (<nkishore@megam.io>)
 | **Copyright:**       | Copyright (c) 2013-2016 Megam Systems.
 | **License:**         | Apache License, Version 2.0
