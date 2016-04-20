@@ -17,14 +17,14 @@
 package solusvm
 
 import (
-	//"fmt"
+  "fmt"
 	"gopkg.in/check.v1"
 )
 
-
 func (s *S) TestServersList(c *check.C) {
 	//id and key is to be regitered as API access for your host ip
-	servers, _, err := s.client.VirtualServers.ListAll(map[string]string{ "id":""+ "iy9rRvifGKajunciPcu5V13ANyAmVnvklN2HV8cv" +"","key":""+ "8mQloZ1rjkl6bevOCW2o0mykZpSLnV8l8OwmCnEN" +"", "action": "node-virtualservers", "rdtype": "json", "nodeid":"4"})
+	servers, _, err := s.client.VirtualServers.ListAllVMs(map[string]string{ "id":""+ "iy9rRvifGKajunciPcu5V13ANyAmVnvklN2HV8cv" +"","key":""+ "8mQloZ1rjkl6bevOCW2o0mykZpSLnV8l8OwmCnEN" +"", "action": "node-virtualservers", "rdtype": "json", "nodeid":"4"})
+  fmt.Printf("\n\n %s",*servers.Status)
 	c.Assert(err, check.IsNil)
-	c.Assert(servers, check.NotNil)
+	c.Assert(servers, check.IsNil)
 }

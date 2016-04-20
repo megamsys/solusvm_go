@@ -29,7 +29,7 @@ import (
 )
 
 const (
-	apiEndSux = "command.php"
+	apiEndSux    = "command.php"
 	ACTION       = "action"
 	RESPONSETYPE = "rdtype"
 	USERNAME     = "id"
@@ -57,7 +57,8 @@ type Client struct {
 
 	// Services used for talking to different parts of the Solusvm API.
 	VirtualServers  *VServersService
-	SolusClients *ClientsService
+	SolusClients    *ClientsService
+	SolusNodes 			*NodesService
 }
 
 // A WRequest manages communication with the Solusvm API.
@@ -108,6 +109,7 @@ func NewClient(httpClient *http.Client, defaultBaseURL string) *Client {
 	c := &Client{client: httpClient, BaseURL: baseURL, ApiEndSux: apiEndSux}
 	c.VirtualServers = &VServersService{client: c}
 	c.SolusClients = &ClientsService{client: c}
+	c.SolusNodes = &NodesService{client: c}
 	return c
 }
 
