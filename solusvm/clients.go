@@ -52,7 +52,7 @@ func (u ClientsService) String() string {
 // Solusvm API docs: http://docs.Solusvm.com/API:Get_VirtualServers_Details
 func (s *ClientsService) ListAllClients(parms map[string]string) (*SClients, *Response, error) {
 	a := new(SClients)
-	resp, err := do(s.client, Params{parms: parms, u: ""}, a)
+	resp, err := do(s.client, Params{parms: parms, u: "client-list"}, a)
 	if err != nil {
 		fmt.Println("Error:")
 		fmt.Println(err)
