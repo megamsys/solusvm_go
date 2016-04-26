@@ -21,38 +21,45 @@ import "fmt"
 // methods of the Solusvm API.
 //
 // Solusvm API docs: http://docs.Solusvm.com/API#Client_Management
-type ClientsService struct {
+type NodesService struct {
 	client *Client
 }
 
-// VirtualServer represents an Solusvm user.
-type SolusClient struct {
-	Id   	          *string `json:"id"`
-	Username    	  *string `json:"username"`
-	Email           *string `json:"email"`
-	FirstName       *string `json:"firstname"`
-	LastName        *string `json:"lastname"`
-	Company    			*string `json:"company"`
-	Level     		  *string `json:"level"`
-	Status 		      *string `json:"status"`
-	Created    			*string `json:"created"`
-	Lastlogin  			*string `json:"lastlogin"`
-}
-
-type SClients struct {
+type Nodes struct {
 	Status     *string `json:"status"`
 	Statusmsg  *string `json:"statusmsg"`
-	SolusClients *[]SolusClient `json:"clients"`
+	Nodes 		 *string `json:"nodes"`
 }
 
-func (u ClientsService) String() string {
+type NodeInfo struct {
+Status      *string `json:"status"`
+Statusmsg   *string `json:"statusmsg"`
+NodeId 	 	  *string `json:"id"`
+HypType 	  *string `json:"virt"`
+NodeName 		*string `json:"name"`
+NodeIp 			*string `json:"ip"`
+DomainName 	*string `json:"hostname"`
+TotVServers *int `json:"virtualservers"`
+}
+
+func (u NodesService) String() string {
 	return Stringify(u)
 }
 
-// Solusvm API docs: http://docs.Solusvm.com/API:Get_VirtualServers_Details
-func (s *ClientsService) ListAllClients(parms map[string]string) (*SClients, *Response, error) {
-	a := new(SClients)
-	resp, err := do(s.client, Params{parms: parms, u: "client-list"}, a)
+func (s *NodesService) ListNodes(parms map[string]string) (*Nodes, *Response, error) {
+	a := new(Nodes)
+	resp, err := do(s.client, Params{parms: parms, u: "node-idlist"}, a)
+	if err != nil {
+		fmt.Println("Error:")
+		fmt.Println(err)
+		return nil, resp, err
+	}
+	return a, resp, err
+}
+
+func (s *NodesService) NodeInfo(parms map[string]string) (*NodeInfo, *Response, error) {
+	a := new(NodeInfo)
+	resp, err := do(s.client, Params{parms: parms, u: "node-statistics"}, a)
 	if err != nil {
 		fmt.Println("Error:")
 		fmt.Println(err)

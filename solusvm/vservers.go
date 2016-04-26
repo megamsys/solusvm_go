@@ -37,6 +37,9 @@ type VirtualServer struct {
 	Swap_burst 		*string `json:"swap-burst"`
 	Type    			*string `json:"type"`
 	Mac      			*string `json:"mac"`
+	Cpus 					*string `json:"cpus"`
+	Status     		*string `json:"status"`
+	Statusmsg  		*string `json:"statusmsg"`
 }
 
 type VServers struct {
@@ -50,7 +53,7 @@ func (u VServersService) String() string {
 }
 
 // Solusvm API docs: http://docs.Solusvm.com/API:Get_VirtualServers_Details
-func (s *VServersService) ListAll(parms map[string]string) (*VServers, *Response, error) {
+func (s *VServersService) ListAllVMs(parms map[string]string) (*VServers, *Response, error) {
 	a := new(VServers)
 	resp, err := do(s.client, Params{parms: parms, u: "node-virtualservers"}, a)
 	if err != nil {
@@ -59,4 +62,16 @@ func (s *VServersService) ListAll(parms map[string]string) (*VServers, *Response
 		return nil, resp, err
 	}
 	return a, resp, err
+}
+
+// Solusvm API docs: http://docs.Solusvm.com/API:Get_VirtualServer_Informations
+func (s *VServersService) VServerInfo(parms map[string]string) (*VirtualServer, *Response, error) {
+	vm := new(VirtualServer)
+	resp, err := do(s.client, Params{parms: parms, u: "vserver-info"}, vm)
+	if err != nil {
+		fmt.Println("Error:")
+		fmt.Println(err)
+		return nil, resp, err
+	}
+	return vm, resp, err
 }
